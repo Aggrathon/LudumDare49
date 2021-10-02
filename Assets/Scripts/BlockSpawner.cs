@@ -11,11 +11,15 @@ public class BlockSpawner : MonoBehaviour
     public bool multiple = false;
     public bool rotate = false;
     public float minDist = 8f;
+    public float speedUpgrade = 0f;
+
+    float speedBoost;
 
     void Start()
     {
         index = blocks.Count;
         current = null;
+        speedBoost = 0f;
     }
 
 
@@ -28,6 +32,7 @@ public class BlockSpawner : MonoBehaviour
                 blocks.Shuffle();
                 index = 0;
             }
+            speedBoost += speedUpgrade;
             if (rotate)
             {
                 Quaternion rot = Quaternion.Euler(0f, 0f, Random.Range(0, 4) * 90f);
@@ -38,6 +43,7 @@ public class BlockSpawner : MonoBehaviour
                 current = Instantiate(blocks[index], transform.position, transform.rotation);
             }
             index++;
+            current.speed += speedBoost;
         }
         else
         {

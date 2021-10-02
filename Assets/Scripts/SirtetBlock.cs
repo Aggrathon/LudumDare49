@@ -16,8 +16,8 @@ public class SirtetBlock : MonoBehaviour
     Vector2 velPos;
     float velRot;
 
-    public float speed = 2.0f;
-    public float fastSpeed = 6.0f;
+    public float speed = 3.0f;
+    public float fastMult = 2.0f;
     public float moveSpeed = 4.0f;
     public float rotSpeed = 180.0f;
     public ColorPalette palette;
@@ -129,9 +129,9 @@ public class SirtetBlock : MonoBehaviour
         if (!move && !rotate)
         {
             if (down)
-                rb.MovePosition(rb.position + new Vector2(0, -fastSpeed * Time.fixedDeltaTime));
+                rb.velocity = new Vector2(0, -speed * fastMult);
             else
-                rb.MovePosition(rb.position + new Vector2(0, -speed * Time.fixedDeltaTime));
+                rb.velocity = new Vector2(0, -speed);
         }
     }
 
