@@ -11,6 +11,11 @@ public class LevelManager : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1, LoadSceneMode.Single);
     }
 
+    public void LoadPrev()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1, LoadSceneMode.Single);
+    }
+
     public void LoadMenu()
     {
         SceneManager.LoadScene(0, LoadSceneMode.Single);
@@ -19,5 +24,12 @@ public class LevelManager : MonoBehaviour
     public void LoadLast()
     {
         SceneManager.LoadScene(SceneManager.sceneCountInBuildSettings - 1, LoadSceneMode.Single);
+    }
+
+    public static string GetSceneNameFromBuildIndex(int index)
+    {
+        string path = SceneUtility.GetScenePathByBuildIndex(index);
+        int start = path.LastIndexOf('/') + 1;
+        return path.Substring(start, path.Length - start - 6);
     }
 }
