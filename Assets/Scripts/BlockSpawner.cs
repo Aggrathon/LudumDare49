@@ -8,6 +8,10 @@ public class BlockSpawner : MonoBehaviour
     SirtetBlock current;
     int index;
 
+    public bool multiple = false;
+    public bool rotate = false;
+    public float minDist = 8f;
+
     void Start()
     {
         index = blocks.Count;
@@ -17,15 +21,22 @@ public class BlockSpawner : MonoBehaviour
 
     void Update()
     {
-        if (!current || (!current.enabled && Vector3.SqrMagnitude(transform.position - current.transform.position) > 20))
+        if (!current || ((multiple || !current.enabled) && Vector3.SqrMagnitude(transform.position - current.transform.position) > minDist * minDist))
         {
             if (index >= blocks.Count)
             {
                 blocks.Shuffle();
-                // TODO shuffle list
                 index = 0;
             }
-            current = Instantiate(blocks[index], transform.position, transform.rotation);
+            if (rotate)
+            {
+                Quaternion rot = Quaternion.Euler(0f, 0f, Random.Range(0, 4) * 90f);
+                current = Instantiate(blocks[index], transform.position, rot);
+            }
+            else
+            {
+                current = Instantiate(blocks[index], transform.position, transform.rotation);
+            }
             index++;
         }
         else

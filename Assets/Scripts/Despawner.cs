@@ -9,7 +9,10 @@ public class Despawner : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        Destroy(other.gameObject);
-        onTrigger.Invoke();
+        if (other.attachedRigidbody)
+        {
+            Destroy(other.attachedRigidbody.gameObject);
+            onTrigger.Invoke();
+        }
     }
 }
