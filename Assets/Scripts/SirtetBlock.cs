@@ -99,6 +99,17 @@ public class SirtetBlock : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (!move && !rotate)
+        {
+            if (down)
+                rb.velocity = new Vector2(0, -speed * fastMult);
+            else
+                rb.velocity = new Vector2(0, -speed);
+        }
+        else
+        {
+            rb.velocity = Vector2.zero;
+        }
         if (move)
         {
             var pos = Vector2.SmoothDamp(rb.position, targetPos, ref velPos, 1 / moveSpeed, moveSpeed * 2, Time.fixedDeltaTime);
@@ -125,13 +136,6 @@ public class SirtetBlock : MonoBehaviour
                 rb.MoveRotation(rot);
             }
 
-        }
-        if (!move && !rotate)
-        {
-            if (down)
-                rb.velocity = new Vector2(0, -speed * fastMult);
-            else
-                rb.velocity = new Vector2(0, -speed);
         }
     }
 
