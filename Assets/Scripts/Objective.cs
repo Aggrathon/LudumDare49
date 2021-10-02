@@ -33,6 +33,15 @@ public class Objective : MonoBehaviour
         currentTime = -1;
     }
 
+    private void OnDisable()
+    {
+        if (Time.time - startTime < 5f)
+        {
+            PlayerPrefs.SetInt("num_" + sceneName, attempts);
+            PlayerPrefs.Save();
+        }
+    }
+
     public void AddPenalty()
     {
         penalty++;
