@@ -5,14 +5,16 @@ using UnityEngine.Events;
 
 public class Despawner : MonoBehaviour
 {
-    public UnityEvent onTrigger;
+    public UnityEvent<Vector2> onTrigger;
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.attachedRigidbody)
+        var rb = other.attachedRigidbody;
+        if (rb && rb.gameObject.activeSelf)
         {
-            Destroy(other.attachedRigidbody.gameObject);
-            onTrigger.Invoke();
+            rb.gameObject.SetActive(false);
+            Destroy(rb.gameObject);
+            onTrigger.Invoke(rb.position);
         }
     }
 }

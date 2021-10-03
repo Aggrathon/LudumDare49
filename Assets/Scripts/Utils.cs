@@ -16,4 +16,12 @@ public static class Utils
             list[r] = tmp;
         }
     }
+
+    public static T Sample<T>(this IList<T> list)
+    {
+        if (list.Count > 0)
+            return list[Random.Range(0, list.Count)];
+        else
+            return default(T);
+    }
 }

@@ -10,7 +10,7 @@ public class ColorPalette : ScriptableObject
 
     public Color Sample()
     {
-        return colors[Random.Range(0, colors.Count)];
+        return colors.Sample();
     }
 
 #if UNITY_EDITOR

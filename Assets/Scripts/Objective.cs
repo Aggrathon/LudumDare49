@@ -19,6 +19,7 @@ public class Objective : MonoBehaviour
     public GameObject victoryPopup;
     public TextMeshProUGUI victoryScore;
     public int penaltyMultiplier = 10;
+    public AudioClip penaltySound;
 
 
     private void OnEnable()
@@ -45,11 +46,12 @@ public class Objective : MonoBehaviour
         }
     }
 
-    public void AddPenalty()
+    public void AddPenalty(Vector2 pos)
     {
         penalty++;
         currentTime = -1;
         Update();
+        AudioManager.Play(penaltySound, pos, AudioManager.SoundType.Alert);
     }
 
     private void Update()

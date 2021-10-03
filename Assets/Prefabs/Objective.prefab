@@ -415,3 +415,4 @@ MonoBehaviour:
   victoryPopup: {fileID: 0}
   victoryScore: {fileID: 0}
   penaltyMultiplier: 10
+  penaltySound: {fileID: 8300000, guid: e8a95921e1258a444ab67d8aa793d027, type: 3}
