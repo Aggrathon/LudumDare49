@@ -103,20 +103,21 @@ AudioMixerSnapshotController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Snapshot
+  m_Name: Normal
   m_AudioMixer: {fileID: 24100000}
   m_SnapshotID: fccacbe221f613b4c8c0c2bedf2a4b96
   m_FloatValues:
     a270bba08bdb45d4d805f7aed8cbcaf6: -9392
-    fb1d21f0a03245c4a8d79bb259aea85d: -9.833286
+    fb1d21f0a03245c4a8d79bb259aea85d: -8.362404
     785a7c717a2533d488973c1b96ef3607: 0.51
     ed343522302815047b82dfc8ad959636: 0
     4651cc52c488de045bdd7d794a113259: 0
     aa00b0c24c461ce44b8174ecacf4febd: -10000
     19177425fd108904e8453c7e8f978b2b: 35
     5d5aad65f3569f442b9145bfda7bd95c: 106
-    aa565ca5548b44749ac555b2170be958: -1.2918884
+    aa565ca5548b44749ac555b2170be958: -2.2889833
     d7be79e52de319d42a673a2a57315664: 0.1
+    2070d15624d328843846531c06c2faba: 1.1400865
     92538f96edb5e7a40a5ce90f5fa8e2a5: 0.0472
     c58533a61e926044892f8991f915a883: 0.505
     150124e67b59f4d4cb47231e1865419c: 0.495
@@ -260,7 +261,7 @@ AudioMixerSnapshotController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Alert Extra
+  m_Name: AlertDuck
   m_AudioMixer: {fileID: 24100000}
   m_SnapshotID: 4009f28e522ba26419c11cf7deed0ff6
   m_FloatValues:
@@ -272,7 +273,7 @@ AudioMixerSnapshotController:
     aa00b0c24c461ce44b8174ecacf4febd: -10000
     19177425fd108904e8453c7e8f978b2b: 35
     5d5aad65f3569f442b9145bfda7bd95c: 106
-    aa565ca5548b44749ac555b2170be958: -7.8940816
+    aa565ca5548b44749ac555b2170be958: -5.3230715
     d7be79e52de319d42a673a2a57315664: 0.1
     2070d15624d328843846531c06c2faba: 0.64345783
     92538f96edb5e7a40a5ce90f5fa8e2a5: 0.0472
@@ -287,7 +288,7 @@ AudioMixerSnapshotController:
     621c9aae8af2438449ddbe9243cc9f09: -3142
     ddc0bd2f965fdb14b88aea3a7428d666: 8.152999
     b3010f5f4ef9ccf49be7d656dc798747: -10
-    05b509ff5d76ff448a2e49c108b2bbb0: -5.2961626
+    05b509ff5d76ff448a2e49c108b2bbb0: -6.5272903
   m_TransitionOverrides: {}
 --- !u!243 &8966820626001503213
 AudioMixerGroupController:

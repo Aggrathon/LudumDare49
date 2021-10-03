@@ -14,11 +14,17 @@ public class SirtetBlock : MonoBehaviour
     bool rotate;
     bool down;
 
+    float soundTime;
+
     public float speed = 3.0f;
     public float fastMult = 2.0f;
     public float moveSpeed = 4.0f;
     public float rotSpeed = 360f;
     public ColorPalette palette;
+
+    public AudioClip dropSound;
+    public AudioClip releaseSound;
+    public AudioClip collideSound;
 
     private void OnEnable()
     {
@@ -97,6 +103,11 @@ public class SirtetBlock : MonoBehaviour
         if (context.started)
         {
             Disable();
+            if (Time.time - soundTime > 0.1f)
+            {
+                AudioManager.Play(dropSound, rb.position, AudioManager.SoundType.SFX);
+                soundTime = Time.time;
+            }
         }
     }
 
@@ -144,7 +155,17 @@ public class SirtetBlock : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        Disable();
+        if (enabled)
+        {
+            Disable();
+            AudioManager.Play(releaseSound, rb.position, AudioManager.SoundType.SFX);
+            soundTime = Time.time;
+        }
+        else if (Time.time - soundTime > 0.2f && rb.velocity.sqrMagnitude > 0.01f)
+        {
+            AudioManager.Play(collideSound, rb.position, AudioManager.SoundType.SFX);
+            soundTime = Time.time;
+        }
     }
 
     void Disable()

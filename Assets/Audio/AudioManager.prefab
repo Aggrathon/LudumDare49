@@ -53,9 +53,12 @@ MonoBehaviour:
   - {fileID: 5155525242456262940}
   musicSource:
   - {fileID: 4571335362210915315}
-  sfxSource: []
+  sfxSource:
+  - {fileID: 3675502325575386838}
   sceneMusic:
   - {fileID: 8300000, guid: 9347832699ad04041a6ae4282ea6d60a, type: 3}
+  normalMix: {fileID: 24500006, guid: c6ed27f3262d08d4fa53ebb150b001c1, type: 2}
+  alertDucking: {fileID: 8334474005574501278, guid: c6ed27f3262d08d4fa53ebb150b001c1, type: 2}
 --- !u!1 &990111395560347703
 GameObject:
   m_ObjectHideFlags: 0

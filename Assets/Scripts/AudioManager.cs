@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Audio;
 
 public class AudioManager : MonoBehaviour
 {
@@ -68,12 +69,12 @@ public class AudioManager : MonoBehaviour
     public static void ToggleMusic(bool on)
     {
         if (instance)
-            instance._ToggleMusic(on);
+            instance.InsToggleMusic(on);
     }
 
     public static bool IsMusicMuted { get { if (instance) return instance.muteMusic; else return false; } }
 
-    void _ToggleMusic(bool on)
+    void InsToggleMusic(bool on)
     {
         if (!on && !muteMusic)
         {
@@ -87,7 +88,7 @@ public class AudioManager : MonoBehaviour
 
     void PlayClipAt(AudioClip clip, Vector2 pos, SoundType type)
     {
-        var list = type switch
+        List<AudioSource> list = type switch
         {
             SoundType.Alert => alertSource,
             SoundType.Music => ambientSource,
@@ -95,19 +96,24 @@ public class AudioManager : MonoBehaviour
             SoundType.SFX => sfxSource,
             _ => alertSource,
         };
+        float pitch = 1f;
+        if (type == SoundType.Alert || type == SoundType.SFX)
+        {
+            pitch = Random.Range(0.9f, 1.1f);
+        }
         foreach (var source in list)
         {
             if (!source.isPlaying)
             {
                 source.transform.position = pos;
-                if (type == SoundType.Alert)
-                    source.pitch = Random.Range(0.9f, 1.1f);
+                source.pitch = pitch;
                 source.PlayOneShot(clip);
                 return;
             }
         }
         var source2 = Instantiate(list[0], pos, Quaternion.identity, transform);
         list.Add(source2);
+        source2.pitch = pitch;
         source2.PlayOneShot(clip);
     }
 

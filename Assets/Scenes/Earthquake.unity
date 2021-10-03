@@ -327,6 +327,7 @@ MonoBehaviour:
     m_RotationOrder: 4
   duration: 2
   cooldown: 6
+  rumbleSound: {fileID: 8300000, guid: ac3b6a2fff3e0ed46916fe445b3192bd, type: 3}
 --- !u!1001 &1196195627
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -15,11 +15,25 @@ public class BlockSpawner : MonoBehaviour
 
     float speedBoost;
 
+    public LineRenderer lr;
+    public float ropeSpeed = 15f;
+    Vector3[] lrPositions;
+
     void Start()
     {
         index = blocks.Count;
         current = null;
         speedBoost = 0f;
+        if (lr)
+        {
+            lrPositions = new Vector3[5];
+            lrPositions[0] = transform.position + Vector3.forward * 0.1f;
+            lrPositions[1] = transform.position + Vector3.forward * 0.1f;
+            lrPositions[2] = transform.position + Vector3.forward * 0.1f + Vector3.up;
+            lrPositions[3] = transform.position + Vector3.forward * 0.1f;
+            lrPositions[4] = transform.position + Vector3.forward * 0.1f;
+            lr.SetPositions(lrPositions);
+        }
     }
 
 
@@ -44,10 +58,20 @@ public class BlockSpawner : MonoBehaviour
             }
             index++;
             current.speed += speedBoost;
+            if (lr)
+            {
+                lrPositions[0] = current.transform.position;
+                lrPositions[1].x = lrPositions[0].x;
+                lr.SetPositions(lrPositions);
+            }
         }
-        else
+        else if (lr)
         {
-            // TODO move rope
+            lrPositions[0] = current.transform.position;
+            lrPositions[1].x = lrPositions[0].x;
+            lrPositions[3].x = Mathf.MoveTowards(lrPositions[3].x, lrPositions[1].x, ropeSpeed * 0.5f * Time.deltaTime);
+            lrPositions[4] = Vector3.MoveTowards(lrPositions[4], current.transform.position, ropeSpeed * Time.deltaTime);
+            lr.SetPositions(lrPositions);
         }
     }
 }

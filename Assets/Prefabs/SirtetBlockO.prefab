@@ -75,6 +75,9 @@ MonoBehaviour:
   moveSpeed: 4
   rotSpeed: 360
   palette: {fileID: 11400000, guid: 9cea939bb4a481d42be94ab13038de6b, type: 2}
+  dropSound: {fileID: 8300000, guid: dbb0c575914b74b4e96553f732db7238, type: 3}
+  releaseSound: {fileID: 8300000, guid: dccd36d4b3a639747b73fcf735489768, type: 3}
+  collideSound: {fileID: 8300000, guid: 09132053eb81f1a48a3dcfce091e19b5, type: 3}
 --- !u!114 &1336248888104272839
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -204,6 +207,46 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 424d9a93-4d54-4508-905a-367a40c0b289
     m_ActionName: Menu/Menu[/Keyboard/escape,/Keyboard/f]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 78ff364e-c592-4601-8f50-e1426bcd4076
+    m_ActionName: UI Menu/Navigate[/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: a22f30c3-ec6e-46fa-bb1e-3dc675ede4c0
+    m_ActionName: UI Menu/Submit[/Keyboard/enter,/Keyboard/space]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 0e5f4ea3-3662-4144-a253-9acce17fc66b
+    m_ActionName: UI Menu/Cancel[/Keyboard/escape]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 0adfb208-1827-4e70-99d2-65c758c164b4
+    m_ActionName: UI Menu/Point[/Mouse/position]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 20bb499d-839c-4b3e-9669-592ace392a95
+    m_ActionName: UI Menu/Click[/Mouse/leftButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: e4dd623d-4e28-43c3-9876-d4cc578c30eb
+    m_ActionName: UI Menu/ScrollWheel[/Mouse/scroll]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 6ea439fc-f0b5-40a5-9dbb-5bc90fa22d46
+    m_ActionName: UI Menu/MiddleClick[/Mouse/middleButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 17f65ab3-8eb4-4c41-b2a5-14e052cf35cf
+    m_ActionName: UI Menu/RightClick[/Mouse/rightButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: c2bdc4fd-5cc2-47d6-8c39-14fbb1d569a3
+    m_ActionName: UI Menu/TrackedDevicePosition
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: abde32ac-a73c-45e1-b60c-9240ac2f8fd0
+    m_ActionName: UI Menu/TrackedDeviceOrientation
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: SirtetBlock

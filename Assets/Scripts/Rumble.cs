@@ -13,9 +13,12 @@ public class Rumble : MonoBehaviour
     public float duration = 2f;
     public float cooldown = 6f;
 
+    public AudioClip rumbleSound;
+
     float time;
     float maxTime;
     Vector2 origPos;
+    bool sound;
 
     void Start()
     {
@@ -31,9 +34,15 @@ public class Rumble : MonoBehaviour
         if (t >= maxTime)
         {
             time += cooldown * Random.Range(0.9f, 1.1f);
+            sound = true;
         }
         else if (t >= 0)
         {
+            if (sound)
+            {
+                AudioManager.Play(rumbleSound, AudioManager.SoundType.Ambient);
+                sound = false;
+            }
             float offset = intensity.Evaluate(t / duration) * Mathf.Sin(t * Mathf.PI * frequency) * magnitude;
             rb.MovePosition(origPos + new Vector2(offset, 0f));
         }
