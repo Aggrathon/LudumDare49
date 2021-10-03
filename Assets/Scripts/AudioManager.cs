@@ -10,6 +10,7 @@ public class AudioManager : MonoBehaviour
         Alert,
         Music,
         Ambient,
+        SFX,
     }
 
     private static AudioManager instance;
@@ -17,16 +18,14 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private List<AudioSource> alertSource;
     [SerializeField] private List<AudioSource> ambientSource;
     [SerializeField] private List<AudioSource> musicSource;
+    [SerializeField] private List<AudioSource> sfxSource;
 
-    public List<AudioClip> sceneAmbient;
     public List<AudioClip> sceneMusic;
 
-    void Start()
+    bool muteMusic;
+
+    void Awake()
     {
-        foreach (var clip in sceneAmbient)
-        {
-            Play(clip, SoundType.Ambient);
-        }
         if (instance)
         {
             Destroy(gameObject);
@@ -54,13 +53,36 @@ public class AudioManager : MonoBehaviour
 
     void Update()
     {
-        for (int i = 0; i < musicSource.Count; i++)
+        if (!muteMusic)
         {
-            if (musicSource[i].isPlaying)
-                return;
+            for (int i = 0; i < musicSource.Count; i++)
+            {
+                if (musicSource[i].isPlaying)
+                    return;
+            }
+            if (sceneMusic.Count > 0)
+                musicSource[0].PlayOneShot(sceneMusic.Sample());
         }
-        if (sceneMusic.Count > 0)
-            musicSource[0].PlayOneShot(sceneMusic.Sample());
+    }
+
+    public static void ToggleMusic(bool on)
+    {
+        if (instance)
+            instance._ToggleMusic(on);
+    }
+
+    public static bool IsMusicMuted { get { if (instance) return instance.muteMusic; else return false; } }
+
+    void _ToggleMusic(bool on)
+    {
+        if (!on && !muteMusic)
+        {
+            foreach (var src in musicSource)
+            {
+                src.Stop();
+            }
+        }
+        muteMusic = !on;
     }
 
     void PlayClipAt(AudioClip clip, Vector2 pos, SoundType type)
@@ -70,6 +92,7 @@ public class AudioManager : MonoBehaviour
             SoundType.Alert => alertSource,
             SoundType.Music => ambientSource,
             SoundType.Ambient => musicSource,
+            SoundType.SFX => sfxSource,
             _ => alertSource,
         };
         foreach (var source in list)

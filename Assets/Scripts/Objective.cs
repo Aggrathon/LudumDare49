@@ -20,6 +20,7 @@ public class Objective : MonoBehaviour
     public TextMeshProUGUI victoryScore;
     public int penaltyMultiplier = 10;
     public AudioClip penaltySound;
+    public AudioClip victorySound;
 
 
     private void OnEnable()
@@ -84,6 +85,7 @@ public class Objective : MonoBehaviour
         currentTime -= 1;
         Update();
         enabled = false;
+        AudioManager.Play(victorySound);
     }
 
 
