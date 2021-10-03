@@ -101,7 +101,7 @@ public class Objective : MonoBehaviour
             int cnt = 0;
             foreach (var item in inTrigger)
             {
-                if (!item.isKinematic && item.IsSleeping())
+                if (!item.isKinematic && (item.IsSleeping() || (Vector2.SqrMagnitude(item.velocity) < 0.001f && item.angularVelocity < 0.1f)))
                 {
                     cnt++;
                 }

@@ -21,6 +21,9 @@ EditorBuildSettings:
     path: Assets/Scenes/A Balancing Act.unity
     guid: 74b0d0089dab4c04f978367920acd5d2
   - enabled: 1
+    path: Assets/Scenes/Turbulence.unity
+    guid: 218d61faa7c08d54883e03a984c4005a
+  - enabled: 1
     path: Assets/Scenes/LevelSelect.unity
     guid: 567395854aec9ce4b871111a3f511519
   m_configObjects:
