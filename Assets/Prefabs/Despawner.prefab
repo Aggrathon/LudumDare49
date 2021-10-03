@@ -115,7 +115,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 5
+      scalar: 3
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -993,11 +993,11 @@ ParticleSystem:
         - serializedVersion: 3
           time: 1
           value: 0
-          inSlope: -1.8210298
-          outSlope: -1.8210298
+          inSlope: -1.9194689
+          outSlope: -1.9194689
           tangentMode: 0
           weightedMode: 0
-          inWeight: 0.14942539
+          inWeight: 0.10632193
           outWeight: 0.33333334
         m_PreInfinity: 2
         m_PostInfinity: 2
@@ -1320,7 +1320,7 @@ ParticleSystem:
         ctime5: 0
         ctime6: 0
         ctime7: 0
-        atime0: 0
+        atime0: 20432
         atime1: 65535
         atime2: 0
         atime3: 0
@@ -1349,7 +1349,7 @@ ParticleSystem:
         ctime5: 0
         ctime6: 0
         ctime7: 0
-        atime0: 0
+        atime0: 29684
         atime1: 65535
         atime2: 0
         atime3: 0
@@ -2624,7 +2624,7 @@ ParticleSystem:
     inWorldSpace: 0
     multiplyDragByParticleSize: 1
     multiplyDragByParticleVelocity: 1
-    dampen: 0.1
+    dampen: 0.08
     drag:
       serializedVersion: 2
       minMaxState: 0

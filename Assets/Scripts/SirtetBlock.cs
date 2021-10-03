@@ -35,6 +35,7 @@ public class SirtetBlock : MonoBehaviour
         {
             renderer.color = c;
         }
+        rb.sleepMode = RigidbodySleepMode2D.NeverSleep;
     }
 
     public void Down(InputAction.CallbackContext context)
@@ -147,6 +148,7 @@ public class SirtetBlock : MonoBehaviour
     void Disable()
     {
         rb.bodyType = RigidbodyType2D.Dynamic;
+        rb.sleepMode = RigidbodySleepMode2D.StartAwake;
         rb.WakeUp();
         this.enabled = false;
     }
