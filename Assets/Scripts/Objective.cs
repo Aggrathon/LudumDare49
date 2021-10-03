@@ -13,11 +13,13 @@ public class Objective : MonoBehaviour
     int penalty;
     List<Rigidbody2D> inTrigger;
     int currentTime;
+    bool stable;
 
     public TextMeshProUGUI text;
     public GameObject victoryPopup;
     public TextMeshProUGUI victoryScore;
     public int penaltyMultiplier = 10;
+
 
     private void OnEnable()
     {
@@ -31,11 +33,12 @@ public class Objective : MonoBehaviour
         inTrigger = new List<Rigidbody2D>();
         penalty = 0;
         currentTime = -1;
+        stable = false;
     }
 
     private void OnDisable()
     {
-        if (Time.time - startTime < 5f)
+        if (Time.time - startTime < 10f)
         {
             PlayerPrefs.SetInt("num_" + sceneName, attempts);
             PlayerPrefs.Save();
@@ -108,7 +111,14 @@ public class Objective : MonoBehaviour
             }
             if (cnt > 1)
             {
-                OnFinish();
+                if (stable)
+                    OnFinish();
+                else
+                    stable = true;
+            }
+            else
+            {
+                stable = false;
             }
         }
     }

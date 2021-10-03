@@ -11,7 +11,7 @@ public class LevelSelect : MonoBehaviour
     {
         var levels = SceneManager.sceneCountInBuildSettings - 2;
         Transform prefab = transform.GetChild(0);
-        for (int i = 1; i < levels; i++)
+        for (int i = transform.childCount; i < levels; i++)
         {
             Instantiate(prefab, prefab.position, prefab.rotation, transform);
         }
