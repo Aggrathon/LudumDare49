@@ -135,6 +135,16 @@ public class SirtetBlock : MonoBehaviour
         if (enabled)
         {
             Disable();
+            if (move || rotate)
+            {
+                rb.velocity *= 0.5f;
+                rb.angularVelocity *= 0.5f;
+            }
+            else if (!down)
+            {
+                rb.velocity *= 0.25f;
+                rb.angularVelocity *= 0.25f;
+            }
             if (Time.time - soundTime > 0.1f && releaseSound)
             {
                 AudioManager.Play(releaseSound, rb.position, AudioManager.SoundType.SFX);

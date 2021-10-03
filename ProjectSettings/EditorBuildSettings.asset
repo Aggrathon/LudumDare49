@@ -27,6 +27,9 @@ EditorBuildSettings:
     path: Assets/Scenes/The Split.unity
     guid: 6b30b71c2f3d39c4aa8df2c4171b81af
   - enabled: 1
+    path: Assets/Scenes/Marathon.unity
+    guid: 5269c96bcf2396d4995bc84aa2d8f933
+  - enabled: 1
     path: Assets/Scenes/Earthquake.unity
     guid: 00aebac4885ad444fb620e2df7ff6f5e
   - enabled: 1
