@@ -8,6 +8,11 @@ public class ColorPalette : ScriptableObject
 {
     public List<Color> colors;
 
+    public Color Sample()
+    {
+        return colors[Random.Range(0, colors.Count)];
+    }
+
 #if UNITY_EDITOR
     [ContextMenu("Paste HTML colors")]
     public void PasteColors()
@@ -19,11 +24,6 @@ public class ColorPalette : ScriptableObject
                 colors.Add(color);
             }
         }
-    }
-
-    public Color Sample()
-    {
-        return colors[Random.Range(0, colors.Count)];
     }
 
     [ContextMenu("Fill Sample colors")]
