@@ -53,5 +53,5 @@ MonoBehaviour:
   - {fileID: 8475298648409588447, guid: ffb182523cbb3ed40a16f214bdbfa5dc, type: 3}
   multiple: 0
   rotate: 0
-  minDist: 8
+  minDist: 7
   speedUpgrade: 0.05
