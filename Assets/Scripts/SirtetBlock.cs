@@ -13,13 +13,11 @@ public class SirtetBlock : MonoBehaviour
     bool move;
     bool rotate;
     bool down;
-    Vector2 velPos;
-    float velRot;
 
     public float speed = 3.0f;
     public float fastMult = 2.0f;
     public float moveSpeed = 4.0f;
-    public float rotSpeed = 180.0f;
+    public float rotSpeed = 360f;
     public ColorPalette palette;
 
     private void OnEnable()
@@ -54,9 +52,9 @@ public class SirtetBlock : MonoBehaviour
     {
         if (context.started)
         {
-            var target = rb.position;
-            target.x = Mathf.Round(target.x) + 1.0f;
-            targetPos = target;
+            if (!move)
+                targetPos = rb.position;
+            targetPos.x = Mathf.Round(targetPos.x + 1.0f);
             move = true;
         }
     }
@@ -65,9 +63,9 @@ public class SirtetBlock : MonoBehaviour
     {
         if (context.started)
         {
-            var target = rb.position;
-            target.x = Mathf.Round(target.x) - 1.0f;
-            targetPos = target;
+            if (!move)
+                targetPos = rb.position;
+            targetPos.x = Mathf.Round(targetPos.x - 1.0f);
             move = true;
         }
     }
@@ -76,7 +74,9 @@ public class SirtetBlock : MonoBehaviour
     {
         if (context.started)
         {
-            targetRot = Mathf.Round(rb.rotation / 90f) * 90f - 90f;
+            if (!rotate)
+                targetRot = rb.rotation;
+            targetRot = Mathf.Round(targetRot / 90f - 1f) * 90f;
             rotate = true;
         }
     }
@@ -85,7 +85,9 @@ public class SirtetBlock : MonoBehaviour
     {
         if (context.started)
         {
-            targetRot = Mathf.Round(rb.rotation / 90f) * 90f + 90f;
+            if (!rotate)
+                targetRot = rb.rotation;
+            targetRot = Mathf.Round(targetRot / 90f + 1f) * 90f;
             rotate = true;
         }
     }
@@ -113,7 +115,7 @@ public class SirtetBlock : MonoBehaviour
         }
         if (move)
         {
-            var pos = Vector2.SmoothDamp(rb.position, targetPos, ref velPos, 1 / moveSpeed, moveSpeed * 2, Time.fixedDeltaTime);
+            var pos = Vector2.MoveTowards(rb.position, targetPos, moveSpeed * Time.fixedDeltaTime);
             if (Vector2.SqrMagnitude(pos - targetPos) < 0.0001)
             {
                 rb.MovePosition(targetPos);
@@ -126,7 +128,7 @@ public class SirtetBlock : MonoBehaviour
         }
         if (rotate)
         {
-            var rot = Mathf.SmoothDampAngle(rb.rotation, targetRot, ref velRot, 1 / rotSpeed, rotSpeed * 2, Time.deltaTime);
+            var rot = Mathf.MoveTowardsAngle(rb.rotation, targetRot, rotSpeed * Time.fixedDeltaTime);
             if (Mathf.Abs(rot - targetRot) < 0.001)
             {
                 rb.MoveRotation(targetRot);

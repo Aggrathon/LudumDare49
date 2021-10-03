@@ -71,9 +71,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 3
-  fastSpeed: 6
-  moveSpeed: 6
-  rotSpeed: 270
+  fastMult: 2
+  moveSpeed: 4
+  rotSpeed: 360
   palette: {fileID: 11400000, guid: 9cea939bb4a481d42be94ab13038de6b, type: 2}
 --- !u!114 &1336248888104272839
 MonoBehaviour:
@@ -196,6 +196,14 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: cee5517b-0392-4a52-b4f7-691329ecf749
     m_ActionName: SirtetBlock/RotRight[/Keyboard/e]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: d6c46e1e-423f-4b5e-8472-0a22882265c9
+    m_ActionName: Menu/Restart[/Keyboard/enter,/Keyboard/r]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 424d9a93-4d54-4508-905a-367a40c0b289
+    m_ActionName: Menu/Menu[/Keyboard/escape,/Keyboard/f]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: SirtetBlock
