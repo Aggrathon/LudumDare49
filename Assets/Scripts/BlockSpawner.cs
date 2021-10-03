@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class BlockSpawner : MonoBehaviour
 {
@@ -58,6 +59,11 @@ public class BlockSpawner : MonoBehaviour
             }
             index++;
             current.speed += speedBoost;
+            if (multiple)
+            {
+                current.releaseSound = null;
+                current.dropSound = null;
+            }
             if (lr)
             {
                 lrPositions[0] = current.transform.position;
@@ -72,6 +78,55 @@ public class BlockSpawner : MonoBehaviour
             lrPositions[3].x = Mathf.MoveTowards(lrPositions[3].x, lrPositions[1].x, ropeSpeed * 0.5f * Time.deltaTime);
             lrPositions[4] = Vector3.MoveTowards(lrPositions[4], current.transform.position, ropeSpeed * Time.deltaTime);
             lr.SetPositions(lrPositions);
+        }
+    }
+
+
+    public void Down(InputAction.CallbackContext context)
+    {
+        if (current)
+        {
+            current.Down(!context.canceled);
+        }
+    }
+
+    public void Right(InputAction.CallbackContext context)
+    {
+        if (context.started && current)
+        {
+            current.Right();
+        }
+    }
+
+    public void Left(InputAction.CallbackContext context)
+    {
+        if (context.started && current)
+        {
+            current.Left();
+        }
+    }
+
+    public void RotateLeft(InputAction.CallbackContext context)
+    {
+        if (context.started && current)
+        {
+            current.RotateLeft();
+        }
+    }
+
+    public void RotateRight(InputAction.CallbackContext context)
+    {
+        if (context.started && current)
+        {
+            current.RotateRight();
+        }
+    }
+
+    public void Drop(InputAction.CallbackContext context)
+    {
+        if (context.started && current)
+        {
+            current.Drop();
         }
     }
 }

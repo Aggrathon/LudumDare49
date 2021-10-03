@@ -18,6 +18,9 @@ EditorBuildSettings:
     path: Assets/Scenes/A Balancing Act.unity
     guid: 74b0d0089dab4c04f978367920acd5d2
   - enabled: 1
+    path: Assets/Scenes/Geometric Error.unity
+    guid: 67e55da4c0423914e80101f963c2b971
+  - enabled: 1
     path: Assets/Scenes/Turbulence.unity
     guid: 218d61faa7c08d54883e03a984c4005a
   - enabled: 1

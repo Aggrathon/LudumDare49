@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class SirtetBlock : MonoBehaviour
@@ -42,72 +41,50 @@ public class SirtetBlock : MonoBehaviour
         rb.sleepMode = RigidbodySleepMode2D.NeverSleep;
     }
 
-    public void Down(InputAction.CallbackContext context)
+    public void Down(bool on)
     {
-        if (context.canceled)
-        {
-            down = false;
-        }
-        else if (context.started)
-        {
-            down = true;
-        }
+        down = on;
     }
 
-    public void Right(InputAction.CallbackContext context)
+    public void Right()
     {
-        if (context.started)
-        {
-            if (!move)
-                targetPos = rb.position;
-            targetPos.x = Mathf.Round(targetPos.x + 1.0f);
-            move = true;
-        }
+        if (!move)
+            targetPos = rb.position;
+        targetPos.x = Mathf.Round(targetPos.x + 1.0f);
+        move = true;
     }
 
-    public void Left(InputAction.CallbackContext context)
+    public void Left()
     {
-        if (context.started)
-        {
-            if (!move)
-                targetPos = rb.position;
-            targetPos.x = Mathf.Round(targetPos.x - 1.0f);
-            move = true;
-        }
+        if (!move)
+            targetPos = rb.position;
+        targetPos.x = Mathf.Round(targetPos.x - 1.0f);
+        move = true;
     }
 
-    public void RotateLeft(InputAction.CallbackContext context)
+    public void RotateLeft()
     {
-        if (context.started)
-        {
-            if (!rotate)
-                targetRot = rb.rotation;
-            targetRot = Mathf.Round(targetRot / 90f - 1f) * 90f;
-            rotate = true;
-        }
+        if (!rotate)
+            targetRot = rb.rotation;
+        targetRot = Mathf.Round(targetRot / 90f - 1f) * 90f;
+        rotate = true;
     }
 
-    public void RotateRight(InputAction.CallbackContext context)
+    public void RotateRight()
     {
-        if (context.started)
-        {
-            if (!rotate)
-                targetRot = rb.rotation;
-            targetRot = Mathf.Round(targetRot / 90f + 1f) * 90f;
-            rotate = true;
-        }
+        if (!rotate)
+            targetRot = rb.rotation;
+        targetRot = Mathf.Round(targetRot / 90f + 1f) * 90f;
+        rotate = true;
     }
 
-    public void Drop(InputAction.CallbackContext context)
+    public void Drop()
     {
-        if (context.started)
+        Disable();
+        if (Time.time - soundTime > 0.1f && dropSound)
         {
-            Disable();
-            if (Time.time - soundTime > 0.1f)
-            {
-                AudioManager.Play(dropSound, rb.position, AudioManager.SoundType.SFX);
-                soundTime = Time.time;
-            }
+            AudioManager.Play(dropSound, rb.position, AudioManager.SoundType.SFX);
+            soundTime = Time.time;
         }
     }
 
@@ -158,10 +135,13 @@ public class SirtetBlock : MonoBehaviour
         if (enabled)
         {
             Disable();
-            AudioManager.Play(releaseSound, rb.position, AudioManager.SoundType.SFX);
-            soundTime = Time.time;
+            if (Time.time - soundTime > 0.1f && releaseSound)
+            {
+                AudioManager.Play(releaseSound, rb.position, AudioManager.SoundType.SFX);
+                soundTime = Time.time;
+            }
         }
-        else if (Time.time - soundTime > 0.2f && rb.velocity.sqrMagnitude > 0.01f)
+        else if (Time.time - soundTime > 0.2f && rb.velocity.sqrMagnitude > 0.01f && collideSound)
         {
             AudioManager.Play(collideSound, rb.position, AudioManager.SoundType.SFX);
             soundTime = Time.time;
